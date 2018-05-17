@@ -1,0 +1,12 @@
+
+#.env config files. very important. for sample of this file, refer to the folder /Docs
+.env
+
+#npm modules
+node_modules/
+
+#log files
+logs/
+
+#local test files
+local/
