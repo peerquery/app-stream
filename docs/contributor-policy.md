@@ -25,6 +25,8 @@ Submitted code should be complete and fully tested by the author.
 ### Submit documentation
 Produce a simply text to explain the workings of your update.
 
-### Utopian option
+## Code of Conduct
+Refer to the [/docs/code-of-conduct.md](https://github.com/peerquery/app-stream/blob/master/docs/code-of-conduct.md).
 
+### Utopian option
 **App Stream** is on **Utopian.io**, you can publish your contributions on **Utopian.io**.
