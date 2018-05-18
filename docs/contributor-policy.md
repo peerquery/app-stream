@@ -2,11 +2,11 @@
 ## Contributing
 Code contributions are welcome for **App Stream**; use the following guide to submit your updates.
 
-## Get started:
+### Get started:
 If you are new to contributing to projects, refer to the official [Github contributor guide](https://help.github.com/articles/fork-a-repo/).
 
 
-## Where to start
+### Where to start
 * Find feature request
 * Find bug reports/issues
 
@@ -25,7 +25,7 @@ Submitted code should be complete and fully tested by the author.
 ### Submit documentation
 Produce a simply text to explain the workings of your update.
 
-## Code of Conduct
+### Code of Conduct
 Refer to the [/docs/code-of-conduct.md](https://github.com/peerquery/app-stream/blob/master/docs/code-of-conduct.md).
 
 ### Utopian option
