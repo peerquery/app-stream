@@ -318,7 +318,7 @@ Due to the modular nature of most functions, **App Stream** only loads modules w
 
 ### Two Blockchain access apps
 App Stream activity stream processors. There are two types:
-* `ops` - streams `operations` and filters for `comment` operations - [courtesy of @almost_digital](https://github.com/jnordberg/dsteem/blob/master/examples/vote-bot/bot.js)
+* `ops` - streams `operations` and filters for `comment` operations - [courtesy of @almost-digital](https://github.com/jnordberg/dsteem/blob/master/examples/vote-bot/bot.js)
 * `blocks` - streams `block numbers`, then fetches `blocks` and then filters for `comment` operations [courtesy of @howo](https://github.com/drov0/steemsnippets/blob/master/dsteem/block_feed/block_feed.js).
 
 
