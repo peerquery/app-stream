@@ -2,7 +2,6 @@
 'use strict'
 
 //config
-var config = require('./../../config/config');
 var pool = require('./../../config/connection');
 var app_test = require('./../../src/app-match/' + config.app_match);
 
