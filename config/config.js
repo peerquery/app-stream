@@ -11,7 +11,7 @@ config.app_admin = '';
 //filter settings
 config.target = 'steemit';
 config.streamer_app = 'ops';
-config.db_engine = 'post-by-app';
+config.db_engine = 'post-comment-reply-by-app';
 config.app_match = 'common';
 config.source_app = '';
 
@@ -21,7 +21,7 @@ config.api_state = 'on';
 config.api_mode = 'open';
 config.subdomain = 'api';
 config.guide_api = 'on';
-config.db_setup = 'false';
+config.db_setup = 'true';
 
 //mysql settings - for future use
 config.votes = true | false;

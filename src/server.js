@@ -9,7 +9,7 @@ var dotvenv = require('dotenv').config();
 var morgan = require('morgan');
 var util = require('util');
 
-//local modules
+//custom modules
 var config = require('../config/config');
 var app = require('../src/app/' + config.streamer_app);
 var logger = require('../src/logger/logger');
