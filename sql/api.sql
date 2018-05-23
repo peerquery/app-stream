@@ -87,7 +87,7 @@ CREATE PROCEDURE `curate`(
 	IN num INT(11)
 )
 BEGIN
-	SELECT `url` FROM `posts_view` ORDER BY `posts_view`.`timestamp` DESC LIMIT num;
+	SELECT `url`, `timestamp`, `title`, `body` FROM `posts_view` ORDER BY `posts_view`.`timestamp` DESC LIMIT num;
 END;
 
 
@@ -100,7 +100,7 @@ CREATE PROCEDURE `curate_comments`(
 	IN num INT(11)
 )
 BEGIN
-	SELECT `url` FROM `comments_view`
+	SELECT  `url`, `timestamp` `body` FROM `comments_view`
 		WHERE `comments_view`.`depth` = 1
 		ORDER BY `comments_view`.`timestamp` DESC
         LIMIT num;
@@ -116,7 +116,7 @@ CREATE PROCEDURE `curate_replies`(
 	IN num INT(11)
 )
 BEGIN
-	SELECT `url` FROM `comments_view`
+	SELECT  `url`, `timestamp`, `body` FROM `comments_view`
 		WHERE `comments_view`.`depth` > 1
 		ORDER BY `comments_view`.`timestamp` DESC
         LIMIT num;
