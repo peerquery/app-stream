@@ -100,7 +100,7 @@ CREATE PROCEDURE `curate_comments`(
 	IN num INT(11)
 )
 BEGIN
-	SELECT  `url`, `timestamp` `body` FROM `comments_view`
+	SELECT  `url`, `timestamp`, `body` FROM `comments_view`
 		WHERE `comments_view`.`depth` = 1
 		ORDER BY `comments_view`.`timestamp` DESC
         LIMIT num;
