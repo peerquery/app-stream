@@ -724,7 +724,7 @@ Also, it is advised to maintain a separate DB for other needs of your site inste
 Most main stream Steem clients provide valid `json_metadata` fields content so this should not be a problem.
 
 ## Contributing
-Kindly refer to the [Contributor guide](https://github.com/peerquery/app-stream/blob/master/docs/contributor-policy.md).
+Kindly refer to the [Contributor guide](https://github.com/peerquery/app-stream/blob/master/docs/contributing.md).
 
 ## Code of Conduct
 **App Stream** adheres to **Peer Query's** Community standards: [/docs/code-of-conduct](https://github.com/peerquery/app-stream/blob/master/docs/code-of-conduct.md).
