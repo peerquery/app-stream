@@ -16,7 +16,7 @@ var db_engine = require('./../../config/config').db_engine;
 var engine = require('./../../src/db-engines/' + db_engine);
  
 // create a new readable stream with all operations, we use the 'latest' mode since
-// we don't care about reversed block that much for a simple vote bot
+// we don't care about reversed block that much
 // and this will make it react faster to the votes of it's master
 //const stream = client.blockchain.getOperationsStream({mode: dsteem.BlockchainMode.Latest});
 const stream = steem.blockchain.getOperationsStream({});
