@@ -23,7 +23,7 @@ app.get('/api', (req, res) => {
 		"api_version: " + config.api_version + "<br/>" +
 		"api_mode: " + config.api_mode + "<br/>" +
 		"api_guides: " + config.api_guide + "<br/>" +
-		"api routes include: <em>/fetch</em>, <em>/stats</em>, <em>/curate</em>"
+		"api routes include: <em>/fetch</em>, <em>/stats</em>, <em>/curate</em>, <em>/search</em>, <em>/filter</em>"
 		
 	);
 })
@@ -81,6 +81,44 @@ app.get('/api/stats', (req, res) => {
 	"------------------------------------------------------------ <br/>" +
 	"*<em>days</em> is number of days, maximum is set to 100<br/>" +
 	"*<em>example: for count of all posts for the month, do:</em> /api/stats/count/30<br/>" +
+	"*<em>return to main API home page at ./api</em>"
+	);
+	
+});
+
+
+//search guide
+	
+app.get('/api/search', (req, res) => {
+	
+	res.status(200).send("API guide for <em>/search</em> route<br/><br/>" +
+	"Below are the supported calls for the <em>/search</em> API route<br/>" +
+	"------------------------------------------------------------ <br/>" +
+	"<em>/api/search/title/:text</em> - find <em>text</em> in post titles<br/>" +
+	"<em>/api/search/author/:author/:text</em> - find post by author with <em>text</em> in post titles<br/>" +
+	"<em>/api/search/category/:category/:text</em> - find posts from category with <em>text</em> in post titles<br/>" +
+	"<em>/api/search/category/author/:category/:author/:text</em> - find posts by an author from a category with target <em>text</em> in post titles<br/>" +
+	"------------------------------------------------------------ <br/>" +
+	"*<em>text</em> is search term you want to search. Max length should be 512, and max rows returned is 20<br/>" +
+	"*<em>example: search for all posts by author @stoodkev in dev category whose title contain 'SteemJS', do:</em> /api/search/category/author/dev/stoodkev/SteemJS<br/>" +
+	"*<em>return to main API home page at ./api</em>"
+	);
+	
+})
+
+
+//filter guide
+	
+app.get('/api/filter', (req, res) => {
+	
+	res.status(200).send("API guide for <em>/filter</em> route<br/><br/>" +
+	"Below are the supported calls for the <em>/filter</em> API route<br/>" +
+	"------------------------------------------------------------ <br/>" +
+	"<em>/api/filter/author/:author</em> - return recent posts from this author<br/>" +
+	"<em>/api/filter/category/:category</em> - return recent posts from this category<br/>" +
+	"------------------------------------------------------------ <br/>" +
+	"Max results returns are 20<br/>" +
+	"*<em>example: Return (20)recent posts from the author @steemitblog </em> /api/filter/author/steemitdev<br/>" +
 	"*<em>return to main API home page at ./api</em>"
 	);
 	
