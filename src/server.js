@@ -14,9 +14,11 @@ var config = require('../config/config');
 var app = require('../src/app/' + config.streamer_app);
 var logger = require('../src/logger/logger');
 var fetch_api = require('../routes/api/fetch');
-var guide_api = require('../routes/api/guide');
+var api_guide = require('../routes/api/guide');
 var stats_api = require('../routes/api/stats');
 var curate_api = require('../routes/api/curate');
+var search_api = require('../routes/api/search');
+var filter_api = require('../routes/api/filter');
 var cors = require('../config/cors');
 var robots = require('../routes/robots/robots');
 
@@ -37,7 +39,9 @@ module.exports = async function () {
 		curate_api(server);
 		fetch_api(server);
 		stats_api(server);
-		if(config.guide_api == 'on') guide_api(server);
+		search_api(server);
+		filter_api(server);
+		if(config.api_guide == 'on') api_guide(server);
 	};
 
 
@@ -50,7 +54,7 @@ module.exports = async function () {
 
 
 	server.get('/', (req, res) => {
-		res.status(200).json({ status: "OK" , server_time: new Date().toJSON(), app_version: config.app_version, api_state: config.api_state, api_version: config.api_version, api_guide: config.guide_api, app_owner: config.app_owner, app_admin: config.app_admin, app_state: config.app_state, streamer_app: config.streamer_app, engine: config.db_engine, uptime: process.uptime(), steem_rpc: process.env.STEEM_RPC});
+		res.status(200).json({ status: "OK" , server_time: new Date().toJSON(), app_version: config.app_version, api_state: config.api_state, api_version: config.api_version, api_guide: config.api_guide, app_owner: config.app_owner, app_admin: config.app_admin, app_state: config.app_state, streamer_app: config.streamer_app, engine: config.db_engine, uptime: process.uptime(), steem_rpc: process.env.STEEM_RPC});
 	})
 
 
