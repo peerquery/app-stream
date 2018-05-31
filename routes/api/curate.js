@@ -8,28 +8,27 @@ var mysql = require('mysql');
 var pool = require('./../../config/connection');
 
 
-module.exports = function(app) {
+module.exports = async function(app) {
 	
 //fetch latest ? posts
 	
-app.get('/api/curate/:num', (req, res) => {
+app.get('/api/curate/:num', async (req, res) => {
 	
-try {
+	try {
 		var num = req.params.num;
 		
 		if (num > 100) num = 100;
 		
 		var sql = "CALL curate(?)";
 		
-		pool.query(sql, num, function (error, results, fields) {
-			if (error) { console.log(error.message); return } ;
+		var results = await pool.query(sql, num);
 			res.json(results[0]);
 			//console.log('Query successful.');
-		});
 			
 	}
 	catch(err) {
 		console.log(err.message);
+		res.sendStatus(500);
 	}
 
 })
@@ -37,24 +36,23 @@ try {
 
 //fetch latest ? comments
 	
-app.get('/api/curate/comments/:num', (req, res) => {
+app.get('/api/curate/comments/:num', async (req, res) => {
 	
-try {
+	try {
 		var num = req.params.num;
 		
 		if (num > 100) num = 100;
 		
 		var sql = "CALL curate_comments(?)";
 		
-		pool.query(sql, num, function (error, results, fields) {
-			if (error) { console.log(error.message); return } ;
+		var results = await pool.query(sql, num);
 			res.json(results[0]);
 			//console.log('Query successful.');
-		});
 			
 	}
 	catch(err) {
 		console.log(err.message);
+		res.sendStatus(500);
 	}
 
 })
@@ -62,24 +60,23 @@ try {
 
 //fetch latest ? comments and replies
 	
-app.get('/api/curate/replies/:num', (req, res) => {
+app.get('/api/curate/replies/:num', async (req, res) => {
 	
-try {
+	try {
 		var num = req.params.num;
 		
 		if (num > 100) num = 100;
 		
 		var sql = "CALL curate_replies(?)";
 		
-		pool.query(sql, num, function (error, results, fields) {
-			if (error) { console.log(error.message); return } ;
+		var results = await pool.query(sql, num);
 			res.json(results[0]);
 			//console.log('Query successful.');
-		});
 			
 	}
 	catch(err) {
 		console.log(err.message);
+		res.sendStatus(500);
 	}
 
 })

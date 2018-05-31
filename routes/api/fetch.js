@@ -8,27 +8,26 @@ var mysql = require('mysql');
 var pool = require('./../../config/connection');
 
 
-module.exports = function(app) {
+module.exports = async function(app) {
 
 
 //check if url is comment or post
 
-app.get('/api/fetch/type/@:author/:permlink', (req, res) => {
+app.get('/api/fetch/type/@:author/:permlink', async (req, res) => {
 	
-try {
+	try {
 		var url = '/@' + req.params.author + '/' + req.params.permlink;
 		
 		var sql = "CALL url_type(?, @type)";
 		
-		pool.query(sql, url, function (error, results, fields) {
-			if (error) { console.log(error.message); return } ;
+		var results = await pool.query(sql, url);
 			res.json(results[0]);
 			//console.log('Query successful.');
-		});
 			
 	}
 	catch(err) {
 		console.log(err.message);
+		res.sendStatus(500);
 	}
 	
 })
@@ -36,22 +35,21 @@ try {
 
 //fetch content(post or comment) of url
 
-app.get('/api/fetch/@:author/:permlink', (req, res) => {
+app.get('/api/fetch/@:author/:permlink', async (req, res) => {
 	
-try {
+	try {
 		var url = '/@' + req.params.author + '/' + req.params.permlink;
 		
 		var sql = "CALL fetch_url(?)";
 		
-		pool.query(sql, url, function (error, results, fields) {
-			if (error) { console.log(error.message); return } ;
+		var results = await pool.query(sql, url);
 			res.json(results[0]);
 			//console.log('Query successful.');
-		});
 			
 	}
 	catch(err) {
 		console.log(err.message);
+		res.sendStatus(500);
 	}
 	
 })
@@ -59,22 +57,21 @@ try {
 
 //fetch content for post by url
 
-app.get('/api/fetch/post/@:author/:permlink', (req, res) => {
+app.get('/api/fetch/post/@:author/:permlink', async (req, res) => {
 	
-try {
+	try {
 		var url = '/@' + req.params.author + '/' + req.params.permlink;
 		
 		var sql = "CALL fetch_post(?)";
 		
-		pool.query(sql, url, function (error, results, fields) {
-			if (error) { console.log(error.message); return } ;
+		var results = await pool.query(sql, url);
 			res.json(results[0]);
 			//console.log('Query successful.');
-		});
 			
 	}
 	catch(err) {
 		console.log(err.message);
+		res.sendStatus(500);
 	}
 	
 })
@@ -82,22 +79,21 @@ try {
 
 //fetch content for comment by url
 
-app.get('/api/fetch/comment/@:author/:permlink', (req, res) => {
+app.get('/api/fetch/comment/@:author/:permlink', async (req, res) => {
 	
-try {
+	try {
 		var url = '/@' + req.params.author + '/' + req.params.permlink;
 		
 		var sql = "CALL fetch_comment(?)";
 		
-		pool.query(sql, url, function (error, results, fields) {
-			if (error) { console.log(error.message); return } ;
+		var results = await pool.query(sql, url);
 			res.json(results[0]);
 			//console.log('Query successful.');
-		});
 			
 	}
 	catch(err) {
 		console.log(err.message);
+		res.sendStatus(500);
 	}
 	
 })
