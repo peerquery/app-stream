@@ -182,3 +182,98 @@ BEGIN
 END;
 
 
+
+
+-- search_by_author
+
+
+DROP procedure IF EXISTS `search_by_author`;
+
+CREATE PROCEDURE `search_by_author`(
+	IN author VARCHAR(45),
+	IN search VARCHAR(512)
+)
+BEGIN
+	SELECT * FROM `posts_view` WHERE `posts_view`.`author` = author AND `posts_view`.`title` LIKE CONCAT('%', search , '%') ORDER BY `timestamp` DESC LIMIT 20;
+END;
+
+
+-- search_by_caregory
+
+
+DROP procedure IF EXISTS `search_by_category`;
+
+CREATE PROCEDURE `search_by_category`(
+	IN category VARCHAR(45),
+	IN search VARCHAR(512)
+)
+BEGIN
+	SELECT * FROM `posts_view` WHERE `posts_view`.`category` = category AND `posts_view`.`title` LIKE CONCAT('%', search , '%') ORDER BY `timestamp` DESC LIMIT 20;
+END;
+
+
+
+-- search_by_title
+
+
+DROP procedure IF EXISTS `search_by_title`;
+
+CREATE PROCEDURE `search_by_title`(
+	IN search VARCHAR(512)
+)
+BEGIN
+	SELECT * FROM `posts_view` WHERE `posts_view`.`title` LIKE CONCAT('%', search , '%') ORDER BY `timestamp` DESC LIMIT 20;
+END;
+
+
+
+
+-- search_by_category_and_author`
+
+
+DROP procedure IF EXISTS `search_by_category_and_author`;
+
+CREATE PROCEDURE `search_by_category_and_author`(
+	IN category VARCHAR(45),
+	IN author VARCHAR(45),
+	IN search VARCHAR(512)
+)
+BEGIN
+	SELECT * FROM `posts_view` WHERE `posts_view`.`category` = category AND `posts_view`.`author` = author AND `posts_view`.`title` LIKE CONCAT('%', search , '%')
+	ORDER BY `timestamp` DESC LIMIT 20;
+END;
+
+
+
+
+-- return by author
+
+
+
+DROP procedure IF EXISTS `filter_by_author`;
+
+CREATE PROCEDURE `filter_by_author`(
+	IN author VARCHAR(45)
+)
+BEGIN
+	SELECT * FROM `posts_view` WHERE `posts_view`.`author` = author ORDER BY `timestamp` DESC LIMIT 20;
+END;
+
+
+
+-- return by category
+
+
+
+DROP procedure IF EXISTS `filter_by_category`;
+
+CREATE PROCEDURE `filter_by_category`(
+	IN category VARCHAR(45)
+)
+BEGIN
+	SELECT * FROM `posts_view` WHERE `posts_view`.`category` = category ORDER BY `timestamp` DESC LIMIT 20;
+END;
+
+
+
+
