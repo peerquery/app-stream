@@ -20,7 +20,7 @@ config.app_state = 'on';
 config.api_state = 'on';
 config.api_mode = 'open';
 config.subdomain = 'api';
-config.guide_api = 'on';
+config.api_guide = 'on';
 config.db_setup = 'true';
 
 //mysql settings - for future use
