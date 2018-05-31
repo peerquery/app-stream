@@ -664,19 +664,19 @@ Sometimes you might just want to return posts from a particular author or just a
 
 localhost/api/filter/author/:author,  eg: localhost/api/filter/author/utopian-io would return 20 recent posts from the @utopian-io. The results are a JSON with the fields:
 
-`id`
-`block`
-`tx_id`(steem transaction id)
-`author`
-`permlink`
-`category`
-`title`
-`body`
-`json_metadata`
-`timestamp`
-`url`
-`last_update`
-and `depth`.
+* `id`
+* `block`
+* `tx_id`(steem transaction id)
+* `author`
+* `permlink`
+* `category`
+* `title`
+* `body`
+* `json_metadata`
+* `timestamp`
+* `url`
+* `last_update`
+* and `depth`.
 
 
 This would not be necessary if your App Stream's target is `post/comment/reply by author` - if you are already curating by author, then everything in your DB is only from your target `author`.
@@ -684,19 +684,19 @@ This would not be necessary if your App Stream's target is `post/comment/reply b
 ### Filter by category
 `localhost/api/filter/category/:category`, eg: `localhost/api/filter/category/life` would return 20 recent posts from the life category. The results are a `JSON` with the fields:
 
-`id`
-`block`
-`tx_id`(steem transaction id)
-`author`
-`permlink`
-`category`
-`title`
-`body`
-`json_metadata`
-`timestamp`
-`url`
-`last_update`
-and `depth`.
+* `id`
+* `block`
+* `tx_id`(steem transaction id)
+* `author`
+* `permlink`
+* `category`
+* `title`
+* `body`
+* `json_metadata`
+* `timestamp`
+* `url`
+* `last_update`
+* and `depth`.
 
 This would not be necessary if your App Stream's target is `post/comment/reply by category` - if you are already curating by category, then everything in your DB is only from your target `category`.
 
