@@ -3,6 +3,7 @@
 
 var mysql = require('mysql');
 var dotvenv = require('dotenv').config();
+var util = require('util');
 
 var pool = mysql.createPool({
 	connectionLimit: process.env.DB_CONNECTIONLIMIT,
@@ -12,5 +13,7 @@ var pool = mysql.createPool({
 	database: process.env.DB_DATABASE,
 	multipleStatements: process.env.DB_MULTIPLESTATEMENETS
 });
+
+pool.query = util.promisify(pool.query);
 
 module.exports = pool;
