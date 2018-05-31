@@ -49,7 +49,7 @@ Aside from solving the above problem, **App Stream** can be used for lots of oth
     - [`config.api_state`](#configapi_state)
     - [`config.api_mode`](#configapi_mode)
     - [`config.subdomain`](#configsubdomain)
-    - [`config.guide_api`](#configguide_api)
+    - [`config.api_guide`](#configapi_guide)
     - [`config.db_setup`](#configdb_setup)
   - [Features](#features)
     - [Absolute content indexing](#absolute-content-indexing)
@@ -84,6 +84,10 @@ Aside from solving the above problem, **App Stream** can be used for lots of oth
     - [Count posts for ? days](#count-posts-for--days)
     - [Count comments for ? days](#count-comments-for--days)
     - [Count comment and replies for ? days](#count-comment-and-replies-for--days)
+  - [Search API examples](#search-api-examples)
+  - [Filter API examples](#filter-api-examples)
+    - [Filter by author](#filter-by-author)
+    - [Filter by category](#filter-by-category)
   - [Cool addons](#cool-addons)
     - [API guides](#api-guides)
     - [Depth determiner](#depth-determiner)
@@ -261,8 +265,8 @@ Default: `config.subdomain = 'api'`. Turn off using `config.subdomain = ''`
 This determines if your server should use a subdomain like the default `api.whatevermy.host` or `rpc`, `data`, `node`, ...
 
 
-### `config.guide_api`
-Default: `config.guide_api = 'on'`. Turn off using `config.guide_api = 'on'`
+### `config.api_guide`
+Default: `config.api_guide = 'on'`. Turn off using `config.api_guide = 'on'`
 
 Determines whether or not to enable API guides on API endpoint bases, further explanation on *api guides* can be found below.
 
@@ -629,6 +633,72 @@ Returns `json` object of comment and replies count for `days`
 Maximum is restricted to 100 days to avoid overloading the DB; days counts over 100 will be reset to 100.
 
 
+
+## Search API examples
+There are four search APIs:
+* `/api/search/title/:text` - find `text` in post titles
+* `/api/search/author/:author/:text` - find post by author with `text` in post titles
+* `/api/search/category/:category/:text` - find posts from category with `text` in post titles
+* `/api/search/category/author/:category/:author/:text` - find posts by an author from a category with `text` in post titles
+
+Example: search for posts by author `@stoodkev` in `#dev` category whose title contain 'SteemJS', do: `/api/search/category/author/dev/stoodkev/SteemJS`. The results are a `JSON` with the fields:
+* `id`
+* `block`
+* `tx_id`(steem transaction id)
+* `author`
+* `permlink`
+* `category`
+* `title`
+* `body`
+* `json_metadata`
+* `timestamp`
+* `url`
+* `last_update`
+* and `depth`
+
+## Filter API examples
+
+Sometimes you might just want to return posts from a particular author or just a particular category. The new filter APIs allow just that. Endpoint base with minimalist docs: localhost/api/filter, and like the other, the default max returned rows is 20 for performance issues.
+
+### Filter by author
+
+localhost/api/filter/author/:author,  eg: localhost/api/filter/author/utopian-io would return 20 recent posts from the @utopian-io. The results are a JSON with the fields:
+
+`id`
+`block`
+`tx_id`(steem transaction id)
+`author`
+`permlink`
+`category`
+`title`
+`body`
+`json_metadata`
+`timestamp`
+`url`
+`last_update`
+and `depth`.
+
+
+This would not be necessary if your App Stream's target is `post/comment/reply by author` - if you are already curating by author, then everything in your DB is only from your target `author`.
+
+### Filter by category
+`localhost/api/filter/category/:category`, eg: `localhost/api/filter/category/life` would return 20 recent posts from the life category. The results are a `JSON` with the fields:
+
+`id`
+`block`
+`tx_id`(steem transaction id)
+`author`
+`permlink`
+`category`
+`title`
+`body`
+`json_metadata`
+`timestamp`
+`url`
+`last_update`
+and `depth`.
+
+This would not be necessary if your App Stream's target is `post/comment/reply by category` - if you are already curating by category, then everything in your DB is only from your target `category`.
 
 
 ## Cool addons
